@@ -5,3 +5,4 @@ docs/.sass-cache
 docs/.jekyll-metadata
 docs/_site/
 /coverage
+.nyc_output
