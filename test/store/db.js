@@ -147,46 +147,58 @@ describe('DB', () => {
   });
 
   it('Gets single node data', () => {
-    const data = db.getData('a');
+    const data = db.getData({
+      page: 'a'
+    }, {
+      page: {
+        _id: 1,
+        title: 1
+      }
+    });
     expect(data).toEqual({
-      _id: 'a',
-      title: 'something'
+      page: {
+        _id: 'a',
+        title: 'something'
+      }
+    });
+  });
+
+  it('Gets single node data fragmented', () => {
+    const data = db.getData({
+      page: 'a'
+    }, {
+      page: {
+        _id: 1
+      }
+    });
+    expect(data).toEqual({
+      page: {
+        _id: 'a'
+      }
     });
   });
 
   it('Gets null data', () => {
-    const data = db.getData(null);
-    expect(data).toEqual(null);
+    const data = db.getData({page: null}, {
+      page: {
+        _id: 1,
+        title: 1
+      }
+    });
+    expect(data).toEqual({page: null});
   });
 
   it('Gets array of nodes', () => {
-    const data = db.getData(['a', 'b']);
-    expect(data).toEqual([
-      {
-        _id: 'a',
-        title: 'something'
-      },
-      {
-        _id: 'b',
-        title: 'something about B'
-      }
-    ]);
-  });
-
-  it('Gets nested node', () => {
-    const data = db.getData({item: 'a'});
-    expect(data).toEqual({
-      item: {
-        _id: 'a',
-        title: 'something'
+    const data = db.getData({
+      pages: ['a', 'b']
+    }, {
+      pages: {
+        _id: 1,
+        title: 1
       }
     });
-  });
-
-  it('Gets nested array of node', () => {
-    const data = db.getData({item: ['a', 'b']});
     expect(data).toEqual({
-      item: [
+      pages: [
         {
           _id: 'a',
           title: 'something'
@@ -196,6 +208,56 @@ describe('DB', () => {
           title: 'something about B'
         }
       ]
+    });
+  });
+
+  it('Gets nested node', () => {
+    const data = db.getData({
+      page: {item: 'a'}
+    }, {
+      page: {
+        item: {
+          _id: 1,
+          title: 1
+        }
+      }
+    });
+    expect(data).toEqual({
+      page: {
+        item: {
+          _id: 'a',
+          title: 'something'
+        }
+      }
+    });
+  });
+
+  it('Gets nested array of node', () => {
+    const data = db.getData({
+      result: {
+        item: ['a', 'b']
+      }
+    }, {
+      result: {
+        item: {
+          _id: 1,
+          title: 1
+        }
+      }
+    });
+    expect(data).toEqual({
+      result: {
+        item: [
+          {
+            _id: 'a',
+            title: 'something'
+          },
+          {
+            _id: 'b',
+            title: 'something about B'
+          }
+        ]
+      }
     });
   });
 
@@ -238,36 +300,67 @@ describe('DB', () => {
   });
 
   it('Gets data node with a Link', () => {
-    const data = db.getData('b');
+    const data = db.getData({
+      page: 'b'
+    }, {
+      page: {
+        _id: 1,
+        title: 1,
+        linked: {
+          _id: 1,
+          title: 1
+        }
+      }
+    });
     expect(data).toEqual({
-      _id: 'b',
-      title: 'B',
-      linked: {
-        _id: 'a',
-        title: 'A'
+      page: {
+        _id: 'b',
+        title: 'B',
+        linked: {
+          _id: 'a',
+          title: 'A'
+        }
       }
     });
   });
 
   it('Gets data node with array of Links', () => {
-    const data = db.getData('c');
-    expect(data).toEqual({
-      _id: 'c',
-      title: 'C',
-      linked: [
-        {
-          _id: 'a',
-          title: 'A'
-        },
-        {
-          _id: 'b',
-          title: 'B',
+    const data = db.getData({
+      page: 'c'
+    }, {
+      page: {
+        _id: 1,
+        title: 1,
+        linked: {
+          _id: 1,
+          title: 1,
           linked: {
-            _id: 'a',
-            title: 'A'
+            _id: 1,
+            title: 1
           }
         }
-      ]
+      }
+    });
+    expect(data).toEqual({
+      page: {
+        _id: 'c',
+        title: 'C',
+        linked: [
+          {
+            _id: 'a',
+            title: 'A',
+            linked: null
+          },
+          {
+            _id: 'b',
+            title: 'B',
+            linked: {
+              _id: 'a',
+              title: 'A'
+            }
+          }
+        ]
+      }
     });
   });
 

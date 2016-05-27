@@ -289,6 +289,16 @@ describe('Connectors store', () => {
         data: {
           pages: ['a', 'b'],
           page: 'a'
+        },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          },
+          page: {
+            _id: 1,
+            title: 1
+          }
         }
       }
     };
