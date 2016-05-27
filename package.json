@@ -8,7 +8,7 @@
     "build": "npm run clean && webpack",
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-register --recursive",
-    "coverage": "nyc --reporter=text-lcov > coverage.lcov npm test && codecov",
+    "coverage": "nyc --reporter=text-lcov npm run test | coveralls",
     "lint": "eslint lib/** test/**"
   },
   "repository": {
@@ -49,7 +49,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.6.0",
-    "codecov": "^1.0.1",
     "eslint": "2.4.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.1.0",
