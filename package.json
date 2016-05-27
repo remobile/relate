@@ -5,10 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
-    "build": "npm run clean && ./node_modules/.bin/webpack",
+    "build": "npm run clean && webpack",
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-register --recursive",
-    "lint": "./node_modules/.bin/eslint lib/** test/**"
+    "coverage": "nyc --reporter=text-lcov > coverage.lcov npm test && codecov",
+    "lint": "eslint lib/** test/**"
   },
   "repository": {
     "type": "git",
@@ -48,11 +49,13 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.6.0",
+    "codecov": "^1.0.1",
     "eslint": "2.4.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.1.0",
     "expect": "^1.14.0",
     "mocha": "^2.4.5",
+    "nyc": "^6.4.4",
     "react": "^0.14.0",
     "react-redux": "^4.0.0",
     "redux": "^3.0.0",

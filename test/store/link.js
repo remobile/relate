@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import Link from '../../lib/reducer/link';
+import Link from '../../lib/store/link';
 
 describe('Link', () => {
   const link = new Link('a');

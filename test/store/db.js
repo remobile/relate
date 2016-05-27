@@ -1,24 +1,24 @@
 import expect from 'expect';
 
-import Link from '../../lib/reducer/link';
-import {Store} from '../../lib/reducer/store';
+import DB from '../../lib/store/db';
+import Link from '../../lib/store/link';
 
-describe('Store', () => {
+describe('DB', () => {
   it('Starts an empty db object', () => {
-    const store = new Store();
-    expect(store.db).toEqual({});
+    const db = new DB();
+    expect(db.db).toEqual({});
   });
 
-  const store = new Store();
+  const db = new DB();
 
   it('Adds a single node', () => {
-    store.updateNodes({
+    db.mergeChanges({
       a: {
         _id: 'a',
         title: 'something'
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'something'
@@ -27,7 +27,7 @@ describe('Store', () => {
   });
 
   it('Adds more nodes', () => {
-    store.updateNodes({
+    db.mergeChanges({
       b: {
         _id: 'b',
         title: 'something B'
@@ -37,7 +37,7 @@ describe('Store', () => {
         title: 'something C'
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'something'
@@ -54,7 +54,7 @@ describe('Store', () => {
   });
 
   it('Makes changes to nodes', () => {
-    store.updateNodes({
+    db.mergeChanges({
       b: {
         _id: 'b',
         title: 'something about B'
@@ -64,7 +64,7 @@ describe('Store', () => {
         title: 'something about C'
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'something'
@@ -81,7 +81,7 @@ describe('Store', () => {
   });
 
   it('Adds nodes with nested structures', () => {
-    store.updateNodes({
+    db.mergeChanges({
       d: {
         _id: 'd',
         title: 'something about D',
@@ -90,7 +90,7 @@ describe('Store', () => {
         }
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'something'
@@ -114,7 +114,7 @@ describe('Store', () => {
   });
 
   it('Updates nodes with nested structures', () => {
-    store.updateNodes({
+    db.mergeChanges({
       d: {
         _id: 'd',
         nested: {
@@ -122,7 +122,7 @@ describe('Store', () => {
         }
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'something'
@@ -147,7 +147,7 @@ describe('Store', () => {
   });
 
   it('Gets single node data', () => {
-    const data = store.getData('a');
+    const data = db.getData('a');
     expect(data).toEqual({
       _id: 'a',
       title: 'something'
@@ -155,12 +155,12 @@ describe('Store', () => {
   });
 
   it('Gets null data', () => {
-    const data = store.getData(null);
+    const data = db.getData(null);
     expect(data).toEqual(null);
   });
 
   it('Gets array of nodes', () => {
-    const data = store.getData(['a', 'b']);
+    const data = db.getData(['a', 'b']);
     expect(data).toEqual([
       {
         _id: 'a',
@@ -174,7 +174,7 @@ describe('Store', () => {
   });
 
   it('Gets nested node', () => {
-    const data = store.getData({item: 'a'});
+    const data = db.getData({item: 'a'});
     expect(data).toEqual({
       item: {
         _id: 'a',
@@ -184,7 +184,7 @@ describe('Store', () => {
   });
 
   it('Gets nested array of node', () => {
-    const data = store.getData({item: ['a', 'b']});
+    const data = db.getData({item: ['a', 'b']});
     expect(data).toEqual({
       item: [
         {
@@ -201,9 +201,9 @@ describe('Store', () => {
 
   it('Adds nodes with Link nodes', () => {
     // Clean up
-    store.db = {};
+    db.db = {};
 
-    store.updateNodes({
+    db.mergeChanges({
       a: {
         _id: 'a',
         title: 'A'
@@ -219,7 +219,7 @@ describe('Store', () => {
         linked: new Link(['a', 'b'])
       }
     });
-    expect(store.db).toEqual({
+    expect(db.db).toEqual({
       a: {
         _id: 'a',
         title: 'A'
@@ -238,7 +238,7 @@ describe('Store', () => {
   });
 
   it('Gets data node with a Link', () => {
-    const data = store.getData('b');
+    const data = db.getData('b');
     expect(data).toEqual({
       _id: 'b',
       title: 'B',
@@ -250,7 +250,7 @@ describe('Store', () => {
   });
 
   it('Gets data node with array of Links', () => {
-    const data = store.getData('c');
+    const data = db.getData('c');
     expect(data).toEqual({
       _id: 'c',
       title: 'C',
@@ -273,9 +273,9 @@ describe('Store', () => {
 
   it('Removes node', () => {
     // Clean up
-    store.db = {};
+    db.db = {};
 
-    store.updateNodes({
+    db.mergeChanges({
       a: {
         _id: 'a',
         title: 'A'
@@ -291,8 +291,8 @@ describe('Store', () => {
         linked: new Link(['a', 'b'])
       }
     });
-    store.removeNode('a');
-    expect(store.db).toEqual({
+    db.removeNode('a');
+    expect(db.db).toEqual({
       b: {
         _id: 'b',
         title: 'B',
@@ -304,8 +304,8 @@ describe('Store', () => {
         linked: new Link(['a', 'b'])
       }
     });
-    store.removeNode('b');
-    expect(store.db).toEqual({
+    db.removeNode('b');
+    expect(db.db).toEqual({
       c: {
         _id: 'c',
         title: 'C',

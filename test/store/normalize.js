@@ -1,11 +1,11 @@
 import expect from 'expect';
 
-import processNode from '../../lib/reducer/process-node';
-import Link from '../../lib/reducer/link';
+import normalize from '../../lib/store/normalize';
+import Link from '../../lib/store/link';
 
-describe('Nodes processing', () => {
+describe('Nodes normalization', () => {
   it('Single node', () => {
-    const result = processNode({
+    const result = normalize({
       _id: 'a',
       title: 'A'
     }, {
@@ -26,7 +26,7 @@ describe('Nodes processing', () => {
   });
 
   it('Null node', () => {
-    const result = processNode(null, {
+    const result = normalize(null, {
       _id: 1,
       title: 1
     });
@@ -39,7 +39,7 @@ describe('Nodes processing', () => {
   });
 
   it('Array node', () => {
-    const result = processNode([
+    const result = normalize([
       {
         _id: 'a',
         title: 'A'
@@ -70,7 +70,7 @@ describe('Nodes processing', () => {
   });
 
   it('Nested nodes', () => {
-    const result = processNode([
+    const result = normalize([
       {
         _id: 'a',
         title: 'A',
@@ -136,7 +136,7 @@ describe('Nodes processing', () => {
   });
 
   it('Deep nested nodes', () => {
-    const result = processNode([
+    const result = normalize([
       {
         _id: 'a',
         title: 'A',
@@ -203,7 +203,7 @@ describe('Nodes processing', () => {
   });
 
   it('Arbitrary structure nodes (without id)', () => {
-    const result = processNode([
+    const result = normalize([
       {
         title: 'A',
         user: {
@@ -226,7 +226,7 @@ describe('Nodes processing', () => {
       }
     });
 
-    const result1 = processNode({
+    const result1 = normalize({
       items: [
         {
           _id: 'a',

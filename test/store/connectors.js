@@ -1,7 +1,7 @@
 import expect from 'expect';
 
-import store from '../../lib/reducer/store';
-import {Connectors} from '../../lib/reducer/connectors';
+import Connectors from '../../lib/store/connectors';
+import DB from '../../lib/store/db';
 
 describe('Connectors store', () => {
   it('Starts an empty connectors object', () => {
@@ -10,6 +10,7 @@ describe('Connectors store', () => {
   });
 
   const connectors = new Connectors();
+  const db = new DB();
 
   it('Adds a single connector from data added', () => {
     connectors.processConnectors(
@@ -222,7 +223,7 @@ describe('Connectors store', () => {
   });
 
   it('Generates data for connector', () => {
-    store.db = {
+    db.db = {
       a: {
         _id: 'a',
         title: 'A'
@@ -242,7 +243,7 @@ describe('Connectors store', () => {
       }
     };
 
-    expect(connectors.generateConnectorData('connector1')).toEqual({
+    expect(connectors.generateConnectorData('connector1', db)).toEqual({
       pages: [
         {
           _id: 'a',
@@ -260,7 +261,7 @@ describe('Connectors store', () => {
     });
 
     // Clean up
-    store.db = {};
+    db.db = {};
   });
 
   it('Gets connectors to update', () => {
