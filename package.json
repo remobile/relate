@@ -8,6 +8,7 @@
     "build": "npm run clean && webpack",
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-register --recursive",
+    "test-coverage": "nyc npm run test",
     "coverage": "nyc --reporter=text-lcov npm run test | coveralls",
     "lint": "eslint lib/** test/**"
   },
