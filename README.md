@@ -1,6 +1,6 @@
 ![Relate logo](http://relax.github.io/relate/images/logo_image.png)
 
-[![build status](https://img.shields.io/travis/relax/relate/master.svg?style=flat-square)](https://travis-ci.org/relax/relate) [![npm version](https://img.shields.io/npm/v/relate-js.svg?style=flat-square)](https://www.npmjs.com/package/relate-js) [![Coverage Status](https://coveralls.io/repos/github/relax/relate/badge.svg?branch=master)](https://coveralls.io/github/relax/relate?branch=master?style=flat-square)
+[![build status](https://img.shields.io/travis/relax/relate/master.svg?style=flat-square)](https://travis-ci.org/relax/relate) [![npm version](https://img.shields.io/npm/v/relate-js.svg?style=flat-square)](https://www.npmjs.com/package/relate-js) [![Coverage Status](https://coveralls.io/repos/github/relax/relate/badge.svg?branch=master&style=flat-square)](https://coveralls.io/github/relax/relate?branch=master)
 
 Relate is a library built to use together with Redux and GraphQL. You can think of it as an alternative to [Relay](https://github.com/facebook/relay) for Redux. It extends the [React Redux's](https://github.com/reactjs/react-redux) `connect` where you can additionally specify your container's data needs. Relate will resolve each container data needs automatically and provides it to each one the data they requested.
 
