@@ -49,6 +49,12 @@ describe('Connectors store', () => {
         listens: {
           pages: ['a', 'b']
         },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {
           pages: {
             addPage: 'Some'
@@ -83,6 +89,12 @@ describe('Connectors store', () => {
         listens: {
           page: []
         },
+        fragments: {
+          page: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {}
       }
     });
@@ -112,6 +124,12 @@ describe('Connectors store', () => {
         listens: {
           pages: ['a', 'b']
         },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {
           pages: {
             addPage: 'Some'
@@ -124,6 +142,12 @@ describe('Connectors store', () => {
         },
         listens: {
           pages: ['a', 'b', 'c']
+        },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
         },
         mutations: {}
       }
@@ -139,6 +163,12 @@ describe('Connectors store', () => {
         },
         listens: {
           pages: ['a', 'b', 'c']
+        },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
         },
         mutations: {}
       }
@@ -176,6 +206,16 @@ describe('Connectors store', () => {
           pages: ['a', 'b', 'c'],
           page: ['d']
         },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          },
+          page: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {
           page: {
             something: 'something'
@@ -212,6 +252,16 @@ describe('Connectors store', () => {
         listens: {
           pages: ['d', 'e', 'f', 'g'],
           page: ['d']
+        },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          },
+          page: {
+            _id: 1,
+            title: 1
+          }
         },
         mutations: {
           page: {
@@ -487,6 +537,12 @@ describe('Connectors store', () => {
         listens: {
           pages: ['a', 'b', 'c']
         },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {}
       }
     });
@@ -504,6 +560,12 @@ describe('Connectors store', () => {
         listens: {
           pages: ['a', 'b', 'c']
         },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
+        },
         mutations: {}
       },
       connector2: {
@@ -512,6 +574,12 @@ describe('Connectors store', () => {
         },
         listens: {
           pages: ['d', 'e', 'f']
+        },
+        fragments: {
+          pages: {
+            _id: 1,
+            title: 1
+          }
         },
         mutations: {}
       }
