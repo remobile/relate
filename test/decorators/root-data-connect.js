@@ -49,6 +49,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           }
         }
@@ -101,6 +102,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn2: {
@@ -111,6 +113,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           }
         }
@@ -183,6 +186,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn2: {
@@ -193,6 +197,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn3: {
@@ -208,6 +213,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           }
         }
@@ -275,6 +281,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn2: {
@@ -291,6 +298,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           }
         }
@@ -397,6 +405,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn2: {
@@ -413,6 +422,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           }
         }
@@ -551,6 +561,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {}
           },
           conn2: {
@@ -567,6 +578,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {
               relate_0: 'page',
               relate_1: 'menu'
@@ -580,6 +592,7 @@ describe('Root data connect', () => {
               }
             },
             mutations: undefined,
+            loadMore: false,
             scopes: {
               relate_2: 'page'
             }
