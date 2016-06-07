@@ -10,6 +10,7 @@ describe('Settings', () => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
+      body: {},
       endpoint: '/graphql'
     };
 

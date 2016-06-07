@@ -10,7 +10,9 @@ import Relate, {
   mergeFragments,
   setHeader,
   removeHeader,
-  setEndpoint
+  setEndpoint,
+  setBody,
+  removeBody
 } from '../lib';
 
 describe('Relate', () => {
@@ -26,7 +28,9 @@ describe('Relate', () => {
       setHeader,
       actionTypes,
       mutation,
-      mergeFragments
+      mergeFragments,
+      setBody,
+      removeBody
     });
 
     expect(dataConnect).toBeA(Function);

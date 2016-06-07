@@ -18,6 +18,7 @@ describe('Reducer', () => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
+      body: {},
       endpoint: '/test'
     });
     const reducer1 = relateReducerInit({headers: {test: 1}});
@@ -26,6 +27,7 @@ describe('Reducer', () => {
       headers: {
         test: 1
       },
+      body: {},
       endpoint: '/test'
     });
 
@@ -43,6 +45,7 @@ describe('Reducer', () => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
+      body: {},
       endpoint: '/graphql'
     });
   });
