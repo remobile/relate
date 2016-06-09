@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && webpack",
-    "prepublish": "npm run build",
+    "prepublish": "npm test && npm run build",
     "test": "mocha --compilers js:babel-register --recursive",
     "test-coverage": "nyc npm run test",
     "coverage": "nyc --reporter=text-lcov npm run test | coveralls",
@@ -65,8 +65,8 @@
     "webpack": "^1.12.14"
   },
   "peerDependencies": {
-    "react": "^0.14.0",
+    "react": "^0.14.0 || ^15.0.0-0",
     "react-redux": "^4.0.0",
-    "redux": "^3.0.0"
+    "redux": "^3.0.0 || ^15.0.0-0 "
   }
 }
