@@ -48,6 +48,7 @@ describe('Root data connect', () => {
                 title: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -101,6 +102,7 @@ describe('Root data connect', () => {
                 title: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -110,6 +112,14 @@ describe('Root data connect', () => {
               page: {
                 _id: 1,
                 title: 1
+              }
+            },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagex'
+                }
               }
             },
             mutations: undefined,
@@ -185,6 +195,7 @@ describe('Root data connect', () => {
                 title: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -194,6 +205,14 @@ describe('Root data connect', () => {
               page: {
                 _id: 1,
                 title: 1
+              }
+            },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagex'
+                }
               }
             },
             mutations: undefined,
@@ -210,6 +229,14 @@ describe('Root data connect', () => {
                 _id: 1,
                 date: 1,
                 title: 1
+              }
+            },
+            variables: {
+              menu: {
+                id: {
+                  type: 'ID!',
+                  value: 'menux'
+                }
               }
             },
             mutations: undefined,
@@ -280,6 +307,7 @@ describe('Root data connect', () => {
                 date: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -297,6 +325,7 @@ describe('Root data connect', () => {
                 data: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -404,6 +433,20 @@ describe('Root data connect', () => {
                 date: 1
               }
             },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagex'
+                }
+              },
+              menu: {
+                id: {
+                  type: 'ID!',
+                  value: 'menux'
+                }
+              }
+            },
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -419,6 +462,20 @@ describe('Root data connect', () => {
                 _id: 1,
                 title: 1,
                 data: 1
+              }
+            },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagex'
+                }
+              },
+              menu: {
+                id: {
+                  type: 'ID!',
+                  value: 'menux'
+                }
               }
             },
             mutations: undefined,
@@ -560,6 +617,20 @@ describe('Root data connect', () => {
                 date: 1
               }
             },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagex'
+                }
+              },
+              menu: {
+                id: {
+                  type: 'ID!',
+                  value: 'menux'
+                }
+              }
+            },
             mutations: undefined,
             loadMore: false,
             scopes: {}
@@ -577,6 +648,20 @@ describe('Root data connect', () => {
                 data: 1
               }
             },
+            variables: {
+              page: {
+                id: {
+                  type: 'ID!',
+                  value: 'pagey'
+                }
+              },
+              menu: {
+                id: {
+                  type: 'ID!',
+                  value: 'menuy'
+                }
+              }
+            },
             mutations: undefined,
             loadMore: false,
             scopes: {
@@ -591,6 +676,7 @@ describe('Root data connect', () => {
                 something: 1
               }
             },
+            variables: {},
             mutations: undefined,
             loadMore: false,
             scopes: {
