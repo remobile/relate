@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/relax/relate#readme",
   "dependencies": {
-    "hoist-non-react-statics": "^1.0.5",
+    "hoist-non-react-statics": "^1.1.0",
     "invariant": "^2.2.0",
     "lodash.debounce": "^4.0.3",
     "lodash.filter": "^4.3.0",
