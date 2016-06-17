@@ -1,7 +1,6 @@
 import expect from 'expect';
 
 import DB from '../../lib/store/db';
-import Link from '../../lib/store/link';
 
 describe('DB', () => {
   it('Starts an empty db object', () => {
@@ -273,12 +272,12 @@ describe('DB', () => {
       b: {
         _id: 'b',
         title: 'B',
-        linked: new Link('a')
+        linked: 'a'
       },
       c: {
         _id: 'c',
         title: 'C',
-        linked: new Link(['a', 'b'])
+        linked: ['a', 'b']
       }
     });
     expect(db.db).toEqual({
@@ -289,12 +288,12 @@ describe('DB', () => {
       b: {
         _id: 'b',
         title: 'B',
-        linked: new Link('a')
+        linked: 'a'
       },
       c: {
         _id: 'c',
         title: 'C',
-        linked: new Link(['a', 'b'])
+        linked: ['a', 'b']
       }
     });
   });
@@ -376,12 +375,12 @@ describe('DB', () => {
       b: {
         _id: 'b',
         title: 'B',
-        linked: new Link('a')
+        linked: 'a'
       },
       c: {
         _id: 'c',
         title: 'C',
-        linked: new Link(['a', 'b'])
+        linked: ['a', 'b']
       }
     });
     db.removeNode('a');
@@ -389,12 +388,12 @@ describe('DB', () => {
       b: {
         _id: 'b',
         title: 'B',
-        linked: new Link('a')
+        linked: 'a'
       },
       c: {
         _id: 'c',
         title: 'C',
-        linked: new Link(['a', 'b'])
+        linked: ['a', 'b']
       }
     });
     db.removeNode('b');
@@ -402,7 +401,7 @@ describe('DB', () => {
       c: {
         _id: 'c',
         title: 'C',
-        linked: new Link(['a', 'b'])
+        linked: ['a', 'b']
       }
     });
   });

@@ -1,7 +1,6 @@
 import expect from 'expect';
 
 import normalize from '../../lib/store/normalize';
-import Link from '../../lib/store/link';
 
 describe('Nodes normalization', () => {
   it('Single node', () => {
@@ -111,17 +110,17 @@ describe('Nodes normalization', () => {
         a: {
           _id: 'a',
           title: 'A',
-          user: new Link('user1')
+          user: 'user1'
         },
         b: {
           _id: 'b',
           title: 'B',
-          user: new Link('user2')
+          user: 'user2'
         },
         c: {
           _id: 'c',
           title: 'C',
-          user: new Link('user1')
+          user: 'user1'
         },
         user1: {
           _id: 'user1',
@@ -180,13 +179,13 @@ describe('Nodes normalization', () => {
         a: {
           _id: 'a',
           title: 'A',
-          user: new Link('user1'),
-          list: new Link(['list1', 'list2'])
+          user: 'user1',
+          list: ['list1', 'list2']
         },
         user1: {
           _id: 'user1',
           username: 'User 1',
-          nested: new Link('nested1')
+          nested: 'nested1'
         },
         nested1: {
           _id: 'nested1',
@@ -262,10 +261,10 @@ describe('Nodes normalization', () => {
       relativeNodes: [
         {
           title: 'A',
-          user: new Link('user1')
+          user: 'user1'
         }, {
           title: 'B',
-          user: new Link('user1')
+          user: 'user1'
         }
       ],
       nodes: ['user1'],
@@ -279,7 +278,7 @@ describe('Nodes normalization', () => {
 
     expect(result1).toEqual({
       relativeNodes: {
-        items: new Link(['a', 'b']),
+        items: ['a', 'b'],
         pagesCount: 2
       },
       nodes: ['a', 'user1', 'b'],
@@ -287,12 +286,12 @@ describe('Nodes normalization', () => {
         a: {
           _id: 'a',
           title: 'A',
-          user: new Link('user1')
+          user: 'user1'
         },
         b: {
           _id: 'b',
           title: 'B',
-          user: new Link('user1')
+          user: 'user1'
         },
         user1: {
           _id: 'user1',
