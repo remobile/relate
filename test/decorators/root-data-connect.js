@@ -40,6 +40,7 @@ describe('Root data connect', () => {
           }
         },
         variables: {},
+        scopes: {},
         connectors: {
           conn1: {
             fragments: {
@@ -94,6 +95,7 @@ describe('Root data connect', () => {
             }
           }
         },
+        scopes: {},
         connectors: {
           conn1: {
             fragments: {
@@ -187,6 +189,7 @@ describe('Root data connect', () => {
             }
           }
         },
+        scopes: {},
         connectors: {
           conn1: {
             fragments: {
@@ -295,6 +298,7 @@ describe('Root data connect', () => {
           }
         },
         variables: {},
+        scopes: {},
         connectors: {
           conn1: {
             fragments: {
@@ -421,6 +425,7 @@ describe('Root data connect', () => {
             }
           }
         },
+        scopes: {},
         connectors: {
           conn1: {
             fragments: {
@@ -604,6 +609,11 @@ describe('Root data connect', () => {
               value: 'menuy'
             }
           }
+        },
+        scopes: {
+          relate_0: 'page',
+          relate_1: 'menu',
+          relate_2: 'page'
         },
         connectors: {
           conn1: {
