@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Relate docs - Server Side Rendering with Relate</title>
+  <link rel='icon' type='image/png' href='/relate/images/logo.png' />
+  <link href='/relate/css/bootstrap.min.css' rel='stylesheet'>
+  <link href='/relate/css/docs.css' rel='stylesheet'>
+  <link href='/relate/css/font-awesome.min.css' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      <img src='/relate/images/logo.png' />
+      <span>Relate.js</span>
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>Introduction</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/relate/index.html'>What is relate</a>
+              </li>
+            
+              <li>
+                <a href='/relate/how-it-works.html'>How it works</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>Usage</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/relate/installation.html'>Installation</a>
+              </li>
+            
+              <li>
+                <a href='/relate/reducer.html'>Reducer</a>
+              </li>
+            
+              <li>
+                <a href='/relate/root-data-connect.html'>Root data connect</a>
+              </li>
+            
+              <li>
+                <a href='/relate/fragments.html'>Fragments</a>
+              </li>
+            
+              <li>
+                <a href='/relate/data-connect.html'>Data connect</a>
+              </li>
+            
+              <li>
+                <a href='/relate/mutations.html'>Mutations</a>
+              </li>
+            
+              <li>
+                <a href='/relate/server-side.html' class='active'>Server side rendering</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>Advanced Usage</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/relate/settings.html'>Changing requests endpoint and headers</a>
+              </li>
+            
+              <li>
+                <a href='/relate/intersect.html'>Catch queries or mutations in other reducers</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+    <a class='footer' href='https://github.com/relax/relate'>
+      <i class='fa fa-github'></i>
+      <span>Project on github</span>
+    </a>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>Server Side Rendering with Relate</h1>
+      <p>Relate provides a server side rendering function, that fetches data dependencies with a performant components tree trespasser. Let’s see an example on how to use it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">import</span> &#123;getDataDependencies&#125; <span class="keyword">from</span> <span class="string">'relate-js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create redux store</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// get component with redux store e.g.</span></span><br><span class="line"><span class="keyword">const</span> component = (</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;ReduxRouter /&gt;</span><br><span class="line">  &lt;/Provider&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// get relate js data dependencies</span><br><span class="line">await getDataDependencies(component, async (request) =&gt; await graphql(</span><br><span class="line">  schema,</span><br><span class="line">  request.query,</span><br><span class="line">  &#123;</span><br><span class="line">    isAuthenticated: true,</span><br><span class="line">    user: req.user</span><br><span class="line">  &#125;,</span><br><span class="line">  request.variables</span><br><span class="line">));</span><br><span class="line"></span><br><span class="line">const state = store.getState();</span><br><span class="line">const initialState = serialize(state); // needs to be inserted in your html result</span><br><span class="line">const markup = renderToString(component);</span><br><span class="line"></span><br><span class="line">// final render html</span><br><span class="line">res.status(200).send(markup);</span><br></pre></td></tr></table></figure>
+<p>Seems complicated? It isn’t really, if you’re familiar with redux and ES7 this should be quite easy to follow. The only relevant and different part that is relative to Relate is the following:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> getDataDependencies(component, <span class="keyword">async</span> (request) =&gt; <span class="keyword">await</span> graphql(</span><br><span class="line">  schema,</span><br><span class="line">  request.query,</span><br><span class="line">  &#123;</span><br><span class="line">    isAuthenticated: <span class="literal">true</span>,</span><br><span class="line">    user: req.user</span><br><span class="line">  &#125;,</span><br><span class="line">  request.variables</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+<p>Let’s break this down, Relate provides an async function <code>getDataDependencies</code>, which receives from arguments:</p>
+<ul>
+<li><strong>Component</strong> - a react component to be traversed to look for data dependencies.</li>
+<li><strong>Resolve function</strong> - a function to where the resulting GraphQL query is thrown.</li>
+</ul>
+<p>The resolve function is quite simple, it makes a call to GraphQL to resolve the calculated data dependencies, this will return the result from the data the components need. Don’t worry about store handling, it is all done internally by Relate. This resolve function takes up an object as argument with the following properties:</p>
+<ul>
+<li><strong>query</strong> - the GraphQL query string.</li>
+<li><strong>variables</strong> - the variables needed for the query string.</li>
+</ul>
+<p>Simple right? Now, after this, just make sure to serialize the redux store state, and re hydrate the store on the client side with that value.</p>
+
+    </div>
+  </div>
+  <div class='switch-page'>
+    
+      <a class='previous' href='/relate/mutations.html'>
+        <i class='fa fa-angle-left'></i>
+        <span>Previous</span>
+      </a>
+    
+    
+      <a class='next' href='/relate/settings.html'>
+        <span>Next</span>
+        <i class='fa fa-angle-right'></i>
+      </a>
+    
+  </div>
+</body>
+</html>
