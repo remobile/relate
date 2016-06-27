@@ -10,7 +10,7 @@ Relate follows a similar API to Relay, it isn't a replacement but an alternative
 
 http://relax.github.io/relate
 
-## Usage example
+## Usage Example
 
 Relate let's you declare data needs at a component level. Example:
 
@@ -51,7 +51,7 @@ export default class PagesContainer extends Component {
 }
 ```
 
-You can use props mapped from your redux state to build the initial query. You can also set variables mid lifecycle:
+You can use props mapped from your redux state to build the initial query. You can also set variables mid lifecycle that will trigger a new fetch:
 
 ```js
 componentWillReceiveProps (nextProps) {

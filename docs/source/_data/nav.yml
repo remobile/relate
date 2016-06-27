@@ -18,6 +18,8 @@
     title: Data connect
   - id: mutations
     title: Mutations
+  - id: server-side
+    title: Server side rendering
 - title: Advanced Usage
   items:
   - id: settings

@@ -3,7 +3,7 @@ layout: default
 id: mutations
 title: Mutations
 prev: data-connect.html
-next: settings.html
+next: server-side.html
 ---
 
 In Relate mutations are created inside Redux actions. For this Relate provides `mutation` function which you can return in your actions. It will use the configuration you set as argument and make the request and processing for you.
