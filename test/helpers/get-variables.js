@@ -3,7 +3,7 @@ import expect from 'expect';
 import getVariables from '../../lib/helpers/get-variables';
 
 describe('Get variables from query to props map helper', () => {
-  it('process fragments with no variables', () => {
+  it('Processes fragments with no variables', () => {
     const result = getVariables({
       fragments: {
         page: {
@@ -15,7 +15,7 @@ describe('Get variables from query to props map helper', () => {
     expect(result).toEqual({});
   });
 
-  it('ignores variables to non existing fragments', () => {
+  it('Ignores variables to non existing fragments', () => {
     const result = getVariables({
       fragments: {
         page: {
@@ -32,7 +32,7 @@ describe('Get variables from query to props map helper', () => {
     expect(result).toEqual({});
   });
 
-  it('calculates valid fragments and variables', () => {
+  it('Calculates valid fragments and variables', () => {
     const result = getVariables({
       fragments: {
         page: {
@@ -61,7 +61,7 @@ describe('Get variables from query to props map helper', () => {
     });
   });
 
-  it('throws an error if variables types is not defined a set of variables', () => {
+  it('Throws an error if variables types is not defined a set of variables', () => {
     expect(() => {
       getVariables({
         fragments: {
@@ -84,7 +84,7 @@ describe('Get variables from query to props map helper', () => {
     }).toThrow();
   });
 
-  it('throws an error if some variable does not have a type associated', () => {
+  it('Throws an error if some variable does not have a type associated', () => {
     expect(() => {
       getVariables({
         fragments: {
@@ -108,7 +108,7 @@ describe('Get variables from query to props map helper', () => {
     }).toThrow();
   });
 
-  it('throws an error if some required variable is not met', () => {
+  it('Throws an error if some required variable is not met', () => {
     expect(() => {
       getVariables({
         fragments: {
@@ -132,7 +132,7 @@ describe('Get variables from query to props map helper', () => {
     }).toThrow();
   });
 
-  it('does not include undefined non required variables', () => {
+  it('Does not include undefined non required variables', () => {
     const result = getVariables({
       fragments: {
         page: {
@@ -162,7 +162,7 @@ describe('Get variables from query to props map helper', () => {
     });
   });
 
-  it('supports deep variables', () => {
+  it('Supports deep variables', () => {
     const result = getVariables({
       fragments: {
         user: {

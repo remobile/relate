@@ -3,6 +3,12 @@ import React from 'react';
 
 import {rootDataConnect} from '../../lib';
 
+function getConnectedComponent () {
+  const Container = () => (<div></div>);
+  const ConnectedComponent = rootDataConnect()(Container);
+  return new ConnectedComponent();
+}
+
 describe('Root data connect', () => {
   const Container = () => (<div></div>);
   const ConnectedComponent = rootDataConnect()(Container);
@@ -691,6 +697,318 @@ describe('Root data connect', () => {
             loadMore: false,
             scopes: {
               relate_2: 'page'
+            }
+          }
+        }
+      });
+    });
+
+    it('Adds non colliding fragment with deep variables', () => {
+      const connectedComp = getConnectedComponent();
+
+      connectedComp.childFetchData({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagex'
+              }
+            }
+          }
+        },
+        ID: 'conn1'
+      });
+
+      expect(connectedComp.bundle).toEqual({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagex'
+              }
+            }
+          }
+        },
+        scopes: {},
+        connectors: {
+          conn1: {
+            fragments: {
+              user: {
+                name: 1,
+                page: {
+                  _id: 1,
+                  title: 1
+                }
+              }
+            },
+            variables: {
+              user: {
+                name: {
+                  type: 'String!',
+                  value: 'some'
+                },
+                page: {
+                  id: {
+                    type: 'ID!',
+                    value: 'pagex'
+                  }
+                }
+              }
+            },
+            mutations: undefined,
+            loadMore: false,
+            scopes: {}
+          }
+        }
+      });
+    });
+
+    it('Adds colliding fragment with deep different variables', () => {
+      const connectedComp = getConnectedComponent();
+
+      // connector 1
+      connectedComp.childFetchData({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagex'
+              }
+            }
+          }
+        },
+        ID: 'conn1'
+      });
+
+      // connector 2 (same variables as 1)
+      connectedComp.childFetchData({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagex'
+              }
+            }
+          }
+        },
+        ID: 'conn2'
+      });
+
+      // connector 3 (different)
+      connectedComp.childFetchData({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagey'
+              }
+            }
+          }
+        },
+        ID: 'conn3'
+      });
+
+      expect(connectedComp.bundle).toEqual({
+        fragments: {
+          user: {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          },
+          'relate_0: user': {
+            name: 1,
+            page: {
+              _id: 1,
+              title: 1
+            }
+          }
+        },
+        variables: {
+          user: {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagex'
+              }
+            }
+          },
+          'relate_0: user': {
+            name: {
+              type: 'String!',
+              value: 'some'
+            },
+            page: {
+              id: {
+                type: 'ID!',
+                value: 'pagey'
+              }
+            }
+          }
+        },
+        scopes: {
+          relate_0: 'user'
+        },
+        connectors: {
+          conn1: {
+            fragments: {
+              user: {
+                name: 1,
+                page: {
+                  _id: 1,
+                  title: 1
+                }
+              }
+            },
+            variables: {
+              user: {
+                name: {
+                  type: 'String!',
+                  value: 'some'
+                },
+                page: {
+                  id: {
+                    type: 'ID!',
+                    value: 'pagex'
+                  }
+                }
+              }
+            },
+            mutations: undefined,
+            loadMore: false,
+            scopes: {}
+          },
+          conn2: {
+            fragments: {
+              user: {
+                name: 1,
+                page: {
+                  _id: 1,
+                  title: 1
+                }
+              }
+            },
+            variables: {
+              user: {
+                name: {
+                  type: 'String!',
+                  value: 'some'
+                },
+                page: {
+                  id: {
+                    type: 'ID!',
+                    value: 'pagex'
+                  }
+                }
+              }
+            },
+            mutations: undefined,
+            loadMore: false,
+            scopes: {}
+          },
+          conn3: {
+            fragments: {
+              user: {
+                name: 1,
+                page: {
+                  _id: 1,
+                  title: 1
+                }
+              }
+            },
+            variables: {
+              user: {
+                name: {
+                  type: 'String!',
+                  value: 'some'
+                },
+                page: {
+                  id: {
+                    type: 'ID!',
+                    value: 'pagey'
+                  }
+                }
+              }
+            },
+            mutations: undefined,
+            loadMore: false,
+            scopes: {
+              relate_0: 'user'
             }
           }
         }
